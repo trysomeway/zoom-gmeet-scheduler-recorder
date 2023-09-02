@@ -12,7 +12,8 @@ import obsws_python as obs
 import time
 from playwright.sync_api import sync_playwright
 import os
-from config import obs_websocket_password, run_browser, close_zoom, localhost_browser_url, run_obs, shutdown_pc_command
+from config import obs_websocket_password, run_browser, close_zoom, localhost_browser_url, run_obs, shutdown_pc_command, \
+    close_obs
 
 
 def shutdown_schedulerr():
@@ -32,7 +33,7 @@ def record_by_obs(session_duration):
     cl.start_record()
     time.sleep(session_duration)
     cl.stop_record()
-    os.system("taskkill /f /im obs64.exe")
+    os.system(close_obs)
 
 def connect_to_google_meet_or_zoom(session_duration, event_link):
     os.system(run_browser)
